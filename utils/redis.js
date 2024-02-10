@@ -1,5 +1,4 @@
 // import the Redis library
-const { resolve } = require('mongodb/lib/core/topologies/read_preference');
 const redis = require('redis');
 
 class RedisClient {
