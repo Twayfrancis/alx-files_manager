@@ -1,23 +1,22 @@
 const { v4: uuidv4 } = require('uuid');
 const sha1 = require('sha1');
-const DBClient = require('../utils/db');
-
 const { ObjectId } = require('mongodb');
+const DBClient = require('../utils/db');
 
 const UsersController = {
   // POST /users endpoint
   async postNew(req, res) {
-    const { email, password } = req.body;
-
-    // check if email and pass are provided
-    if (!email) {
-      return res.status(400).json({ error: 'Missing email' });
-    }
-    if (!password) {
-      return res.status(400).json({ error: 'Missing password' });
-    }
-
     try {
+      const { email, password } = req.body;
+
+      // check if email and pass are provided
+      if (!email) {
+        return res.status(400).json({ error: 'Missing email' });
+      }
+      if (!password) {
+        return res.status(400).json({ error: 'Missing password' });
+      }
+
       // check if email exist in DB
       const existingUser = await DBClient.db.collection('users').findOne({ email });
       if (existingUser) {
@@ -43,7 +42,7 @@ const UsersController = {
       console.error('Error creating new user:', error);
       return res.status(500).json({ error: 'Internal Server Error' });
     }
-  },
+  }
 };
 
 module.exports = UsersController;
