@@ -1,6 +1,6 @@
 const { v4: uuidv4 } = require('uuid');
 const sha1 = require('sha1');
-const { ObjectId } = require('mongodb');
+
 const DBClient = require('../utils/db');
 
 const UsersController = {
@@ -42,7 +42,7 @@ const UsersController = {
       console.error('Error creating new user:', error);
       return res.status(500).json({ error: 'Internal Server Error' });
     }
-  }
+  },
 };
 
 module.exports = UsersController;
