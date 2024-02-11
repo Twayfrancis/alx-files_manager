@@ -7,7 +7,7 @@ const AppController = {
     const redisAlive = RedisClient.isAlive();
     const dbAlive = DBClient.isAlive();
 
-    res.status(200).son({ redis: redisAlive, db: dbAlive });
+    res.status(200).json({ redis: redisAlive, db: dbAlive });
   },
 
   // GET /stats endpoint
